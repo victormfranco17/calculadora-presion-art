@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Blood Pressure Calculator</title>
+	<style>
+		/* Aquí va el código CSS */
+        .container {
+	max-width: 600px;
+	margin: 0 auto;
+	padding: 20px;
+	background-color: #f5f5f5;
+	border-radius: 10px;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+	text-align: center;
+	margin-bottom: 20px;
+	color: #2c3e50;
+}
+
+form {
+	display: flex;
+	flex-direction: column;
+}
+
+label {
+	font-size: 18px;
+	margin-bottom: 10px;
+	color: #2c3e50;
+}
+
+input[type="number"] {
+	padding: 10px;
+	border-radius: 5px;
+	border: none;
+	margin-bottom: 20px;
+}
+
+button {
+	padding: 10px;
+	border-radius: 5px;
+	border: none;
+	color: #fff;
+	background-color: #3498db;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+button:hover {
+	background-color: #2980b9;
+}
+
+#resultado {
+	margin-top: 20px;
+	font-size: 24px;
+	font-weight: bold;
+	color: #2c3e50;
+	text-align: center;
+}
+	</style>
+	<script>
+		// Aquí va el código JavaScript
+        function calcular() {
+	var sistole = document.getElementById("sistole").value;
+	var diastole = document.getElementById("diastole").value;
+
+	if (sistole === "" || diastole === "") {
+		alert("Por favor, introduce los valores de la presión arterial.");
+		return;
+	}
+
+	var resultado = document.getElementById("resultado");
+	var clasificacion = "";
+	var color = "";
+
+	if (sistole < 90 && diastole < 60) {
+		clasificacion = "Hipotensión";
+		color = "#2ecc71";
+	} else if (sistole >= 90 && sistole <= 119 && diastole >= 60 && diastole <= 79) {
+		clasificacion = "Normal";
+		color = "#3498db";
+	} else if ((sistole >= 120 && sistole <= 129) && diastole <= 80) {
+		clasificacion = "Elevada";
+		color = "#f1c40f";
+	} else if ((sistole >= 130 && sistole <= 139) || (diastole >= 80 && diastole <= 89)) {
+		clasificacion = "Hipertensión";
+		color = "#e67e22";
+	} else {
+		clasificacion = "Hipertensión Grave";
+		color = "#e74c3c";
+	}
+
+	resultado.innerHTML = `${clasificacion} <span style="color: ${color};">${sistole}/${diastole}</span>`;
+}
+	</script>
+</head>
+<body>
+	<!-- Aquí va el contenido HTML -->
+    <!DOCTYPE html>
+<html>
+<head>
+	<title>Calculadora de Presión Arterial</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<div class="container">
+		<h1>Calculadora de Presión Arterial</h1>
+		<form>
+			<label for="sistole">Sistólica:</label>
+			<input type="number" id="sistole" name="sistole" required>
+
+			<label for="diastole">Diastólica:</label>
+			<input type="number" id="diastole" name="diastole" required>
+
+			<button type="button" onclick="calcular()">Calcular</button>
+		</form>
+
+		<div id="resultado"></div>
+	</div>
+
+	<script src="script.js"></script>
+</body>
+</html>
+</body>
+</html>
